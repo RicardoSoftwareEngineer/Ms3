@@ -13,7 +13,6 @@ import java.util.List;
 public class OrderEntity {
     @Id
     private String id;
-    private LocalDateTime creationDate;
     private OrderStatus status;
     private double totalPrice;
 
@@ -25,7 +24,7 @@ public class OrderEntity {
     }
 
     public OrderEntity(OrderDTO orderDTO) {
-        this.creationDate = LocalDateTime.now();
+        this.id = orderDTO.getOrderId();
         this.status = OrderStatus.PROCESSING;
         for(ItemEntity itemEntity: orderDTO.getItems()){
             this.items.add(itemEntity);
@@ -38,14 +37,6 @@ public class OrderEntity {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     public OrderStatus getStatus() {

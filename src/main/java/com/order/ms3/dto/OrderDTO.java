@@ -1,17 +1,29 @@
 package com.order.ms3.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.order.ms3.entity.ItemEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderDTO {
     private String clientId;
     private String orderId;
-    private List<ItemEntity> items;
+    private String id;
+    private List<ItemEntity> items = new ArrayList<>();
     private double total;
-    ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getClientId() {
         return clientId;
